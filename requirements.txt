@@ -1,4 +1,6 @@
+python-3.11
 python-telegram-bot==20.6
 google-generativeai
 httpx~=0.25.2
+
 
