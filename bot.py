@@ -4,12 +4,8 @@ import google.generativeai as genai
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
 
-# --- КОНФІГУРАЦІЯ ---
-# Твій Телеграм токен
-TELEGRAM_TOKEN = "7703936963:AAGyPEws-dqZrHVz5OQ-WxqiRmIjJafjlO4"
-
-# Твій Gemini API Key (перевір, щоб він був правильним)
-GEMINI_API_KEY = "AIzaSyD_OQO91ozGp9vDb-5L20PaZf2mXWYXnUE"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Налаштування Gemini
 try:
@@ -106,4 +102,5 @@ if __name__ == '__main__':
     application.add_handler(msg_handler)
 
     print("Бот з Gemini запущений...")
+
     application.run_polling()
