@@ -7,27 +7,22 @@ from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, Messa
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Налаштування Gemini
 try:
     genai.configure(api_key=GEMINI_API_KEY)
     model = genai.GenerativeModel('gemini-2.5-flash')
 except Exception as e:
     print(f"Помилка налаштування ключа: {e}")
 
-# Логування
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
-# --- МЕНЮ ---
 MAIN_MENU_KEYBOARD = [
     [KeyboardButton("Student"), KeyboardButton("IT-technologies")],
     [KeyboardButton("Contacts"), KeyboardButton("ChatGPT")]
 ]
 BACK_KEYBOARD = [[KeyboardButton("Назад")]]
-
-# --- ФУНКЦІЇ ---
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
@@ -68,7 +63,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             await update.message.reply_text("Будь ласка, скористайтеся меню.", reply_markup=ReplyKeyboardMarkup(MAIN_MENU_KEYBOARD, resize_keyboard=True))
 
-# --- ГОЛОВНИЙ ЦИКЛ ---
 if __name__ == '__main__':
     application = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 
@@ -77,3 +71,4 @@ if __name__ == '__main__':
 
     print("Бот з Gemini запущений...")
     application.run_polling()
+
