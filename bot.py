@@ -1,3 +1,4 @@
+import os
 import logging
 import asyncio
 import google.generativeai as genai
@@ -104,3 +105,4 @@ if __name__ == '__main__':
     print("Бот з Gemini запущений...")
 
     application.run_polling()
+
